@@ -1,7 +1,7 @@
 @import "partials/variable",
-    "partials/fonts",    
-    "partials/layout",
+    "partials/fonts",
     "partials/mixins",
+    "partials/layout",
     "partials/typography";
 
 * {
@@ -9,6 +9,36 @@
     padding:0;
     box-sizing: border-box;
 }
-.main {
-   
+
+.search {
+    display:block;
+    width:20px;
+    height:20px;
+    margin-left:15px;
+    background: url('../img/search.svg') center center no-repeat;
+    background-size:contain;
+}
+.bookmark {
+    display:block;
+    width:16px;
+    height:20px;
+    margin-left:20px;
+    background: url('../img/bookmark.svg') center center no-repeat;
+    background-size:contain;
+}
+.menu {
+    &-hamburger {
+        display:block;
+        width:24px;
+        height:20px;
+        background: url('../img/burger.svg') center center no-repeat;
+        background-size:contain;
+    }
+    &-closed {
+        display:block;
+        width:19px;
+        height:19px;
+        background: url('../img/x.svg') center center no-repeat;
+        background-size:contain;
+    }
 }

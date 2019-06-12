@@ -1,7 +1,213 @@
 .container {
   display:grid;
+  width:100%;
+  max-width: 1366px;
+  margin:0 auto;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 51px auto 185px;
+  grid-template-rows: 51px minmax(calc(100vh - 51px - 185px), auto) minmax(185px, auto);
   column-gap:16px;
-  row-gap:16px;
+  //padding:0 16px;
+}
+
+.header {
+  display:grid;
+  grid-column:1/13;
+  grid-row:1/2;
+  grid-template-columns: 120px 1fr minmax(90px, auto);
+  grid-template-rows: 1fr;
+  grid-template-areas: "logo mid-block actions";
+  align-items:center;
+  //margin:0 -16px;
+  border: 1px solid #F1EFF3;
+  box-shadow: 0 1px 0 0 #F1EFF3;
+  &__logo {
+    display:flex;
+    grid-area:logo;
+    align-items:center;
+    justify-content:center;
+    height:100%;
+    border-right:1px solid $lightgray-d;
+    font-family:$main_font,$main_fix_font;
+    @include font-size(18px);
+    font-style:normal;
+    text-transform:uppercase;
+    letter-spacing: 6px;
+    line-height: 32px;
+    color:$darkgray;
+
+  }
+  &__mid-block {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    grid-area:mid-block;
+    padding:0 15px;
+  }
+  &__actions {
+    display:flex;
+    height:100%;
+    align-items:center;
+    grid-area:actions;
+    border-left:1px solid $lightgray-d;
+  }
+  &-dropdown-btn {
+    //position:relative;
+    padding:6px 32px 6px 18px;
+    border-radius:100px;
+    background: $grapefruit;
+    &__title {
+      position:relative;
+      font-family: $main_font,$main_fix_font;
+      @include font-size(14px);
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      color:$white;
+      &:before,&:after {
+        content: '';
+        display:block;
+        position:absolute;
+        border-radius:2px;
+        transform: translate(0,-50%) rotate(135deg);
+        background:$white;
+      }
+      &:before {
+        height:7px;
+        width:2px;
+        top:50%;
+        left:calc(100% + 8px);
+      }
+      &:after {
+        height:2px;
+        width:7px;
+        top:50%;
+        left:calc(100% + 10px);
+
+      }
+    }
+  }
+  &-nav {
+    &__list {
+      display:flex;
+      list-style-type: none;
+    }
+    &__item {
+      position:relative;
+      &.active {
+        .header-nav__link {
+          color:$sun-d;
+        }
+      }
+      &:before {
+        content: '';
+        display:block;
+        position:absolute;
+        top:100%;
+        left:50%;
+        transform:translate(-50%,0);
+        width:42px;
+        height:2px;
+        transition:$main_animation;
+        background:transparent;
+      }
+      &:not(:last-child) {
+        margin-right:30px;
+      }
+      &:hover {
+        &:before {
+          background:$sun-d;
+        }
+      }
+    }
+    &__link {
+      font-family:$main_font,$main_fix_font;
+      @include font-size(14px);
+      font-weight:600;
+      font-style:normal;
+    }
+  }
+}
+
+.sidebar {
+  position:relative;
+  display:flex;
+  grid-column:1/2;
+  grid-row:2/3;
+  width:54px;
+  overflow:hidden;
+  background:$grapefruit;
+  transition:$main_animation;
+  &:hover {
+    width:413px;
+  }
+  &__thumbnail {
+    position:relative;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    height:100%;
+    width:54px;
+    padding-top:30px;
+  }
+  &__category-name {
+    position:absolute;
+    font-family:$main_font,$main_fix_font;
+    @include font-size(14px);
+    text-transform:uppercase;
+    white-space:nowrap;
+    color:$white;
+    top:50%;
+    transform: translate(0,-50%) rotate(-90deg);
+  }
+  &-menu {
+    display:flex;
+    align-items:center;
+    padding-left:80px;
+    width:100%;
+    &__list {
+      display:flex;
+      flex-direction:column;
+      list-style-type:none;
+    }
+    &__item {
+      position:relative;
+      &:before {
+        content: '';
+        display:block;
+        position:absolute;
+        right:calc(100% + 10px);
+        width:24px;
+        height:2px;
+        background:transparent;
+        transition:$main_animation;
+      }
+      &.active,&:hover {
+        &:before {
+          background:$white;
+        }
+      }
+      &:not(:last-child) {
+        margin-bottom:10px;
+      }
+    }
+    &__link {
+      font-family: $main_font,$main_fix_font;
+      @include font-size(18px);
+      font-style:normal;
+      font-weight:400;
+      color:$white;
+      &:hover {
+        color:$white;
+      }
+    }
+  }
+}
+.main {
+  grid-column:1/13;
+  grid-row:2/3;
+  //margin:0 -16px;
+}
+.footer {
+  grid-column: 1/13;
+  grid-row:3/4;
+  //margin: 0 -16px;
 }
